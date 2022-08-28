@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    Main
+{% endblock title %}
+
+{% block webpage_content %}
+    <div>
+    <h2>Main menu</h2>
+    <li>
+        <i><a href="{% url 'lunaro-index' %}">Lunaro tracker</a></i>
+    </li>
+    </div>
+{% endblock webpage_content %}

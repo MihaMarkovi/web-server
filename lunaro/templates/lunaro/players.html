@@ -1,0 +1,29 @@
+{% extends 'lunaro/base.html' %}
+{% block title %}
+    All Players
+{% endblock title %}
+
+{% block webpage_content %}
+    <div class="container">
+        <br>
+        <div class="text-center">
+            <h1>List of all players</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <th>{{ player.name }}</th>
+                        <th>{{ player.rank }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+{% endblock webpage_content %}

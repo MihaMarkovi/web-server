@@ -1,0 +1,18 @@
+{% extends 'lunaro/base.html' %}
+
+{% block title %}
+    Match details
+{% endblock %}
+
+{% block webpage_content %}
+    <div class="container">
+        <h1>You are looking at match no. {{ match.id }}</h1>
+        <h4>Player a: {{ match.player_a }}</h4>
+        <h4>Player b: {{ match.player_b }}</h4>
+        <h4>Player a score: {{ match.score_a }}</h4>
+        <h4>Player b score: {{ match.score_b }}</h4>
+        <h4>Delta a: {{ match.delta_a }}</h4>
+        <h4>Delta b: {{ match.delta_b }}</h4>
+        <h4>Time: {{ match.time }}</h4>
+    </div>
+{% endblock webpage_content %}

@@ -1,0 +1,58 @@
+{% extends "lunaro/base.html" %}
+{% block title %}
+    Lunaro tracker
+{% endblock title %}
+
+
+{% block webpage_content %}
+    <div class="container">
+        <br>
+        <a href="{% url "main" %}" class="btn btn-secondary">Back</a>
+        <div class="text-center">
+            <h1>Welcome to Lunaro tracker</h1>
+            <h4>This is where everything started ...</h4>
+            <hr>
+            <p>Lunaro is a game mode for the game, called Warframe from Digital Extremes. I and my fellow ballers
+                wanted to create a ranking system, that allows us to monitor players' progress, because Lunaro did not
+                provide it.</p><br>
+
+            <h2>TOP PLAYERS</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <th>{{ player.name }}</th>
+                        <th>{{ player.rank }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+<br>
+        <h2>RECENT MATCHES</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Player 1</th>
+                    <th>Player 2</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for match in matches %}
+                    <tr>
+                        <th>{{ match.player_a }}</th>
+                        <th>{{ match.player_b }}</th>
+                        <th>{{ match.score_a }} : {{ match.score_b }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock webpage_content %}
