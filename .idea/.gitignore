@@ -6,3 +6,9 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+#pycache files
+/lunaro/__pycache__
+/lunaro/migrations/__pycache__
+/main/__pycache__
+/server/__pycache__
+*.pyc

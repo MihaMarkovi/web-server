@@ -13,14 +13,15 @@
                 <tr>
                     <th>Name</th>
                     <th>Rank</th>
+                    <th> </th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for player in players %}
                     <tr>
-                        <th>{{ player.name }}</th>
-                        <th>{{ player.rank }}</th>
-                        <th><a href="{% url 'player-details' player.pk %}">Details</a></th>
+                        <td><p class="text-muted">{{ player.name }}</p></td>
+                        <td><p class="text-muted">{{ player.rank }}</p></td>
+                        <td><a href="{% url 'player-details' player.pk %}" class="btn btn-outline-primary m-1">View</a></th>
                     </tr>
                 {% endfor %}
                 </tbody>
