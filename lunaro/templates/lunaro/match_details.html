@@ -6,13 +6,72 @@
 
 {% block webpage_content %}
     <div class="container">
-        <h1>You are looking at match no. {{ match.id }}</h1>
-        <h4>Player a: {{ match.player_a }}</h4>
-        <h4>Player b: {{ match.player_b }}</h4>
-        <h4>Player a score: {{ match.score_a }}</h4>
-        <h4>Player b score: {{ match.score_b }}</h4>
-        <h4>Delta a: {{ match.delta_a }}</h4>
-        <h4>Delta b: {{ match.delta_b }}</h4>
-        <h4>Time: {{ match.time }}</h4>
+        <div class="row d-flex m-2" style="width: 40rem;">
+            <div class="card-body" style="width: 40rem">
+                <h5 class="card-title text-neophyte mb-3"><strong>Match {{ match.id }}</strong></h5>
+                
+                <div class="row d-inline-flex m-2 p-3 card" style="width: 15rem;">
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">: </p>
+                        <p class="card-text d-inline ms-2 text-sun">{{ match.player_a }}</p>
+                    </div>
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">Goals: </p>
+                        <p class="card-text d-inline ms-2 text-sun">{{ match.score_a }}</p>
+                    </div>
+
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">Rank change: </p>
+
+                        {% if match.delta_a > 0 %}
+
+                        <p class="card-text d-inline ms-2 text-sun-light">+{{ match.delta_a }}</p>
+                        
+                        {% elif match.delta_a == 0 %}
+
+                        <p class="card-text d-inline ms-2 text-sun">{{ match.delta_a }}</p>
+
+                        {% elif match.delta_a < 0 %}
+
+                        <p class="card-text d-inline ms-2 text-sun-dark">{{ match.delta_a }}</p>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <div class="row d-inline-flex m-2 p-3 card" style="width: 15rem;">
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">: </p>
+                        <p class="card-text d-inline ms-2 text-moon">{{ match.player_b }}</p>
+                    </div>
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">Goals: </p>
+                        <p class="card-text d-inline ms-2 text-moon">{{ match.score_b }}</p>
+                    </div>
+
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">Rank change: </p>
+
+                        {% if match.delta_b > 0 %}
+
+                        <p class="card-text d-inline ms-2 text-moon-light">+{{ match.delta_b }}</p>
+                        
+                        {% elif match.b == 0 %}
+
+                        <p class="card-text d-inline ms-2 text-moon">{{ match.delta_b }}</p>
+
+                        {% elif match.delta_b < 0 %}
+
+                        <p class="card-text d-inline ms-2 text-moon-dark">{{ match.delta_b }}</p>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <p class="card-text text-muted mt-3">Played at: {{ match.time }} UTC</p>
+            </div>
+        </div>
     </div>
 {% endblock webpage_content %}

@@ -11,8 +11,8 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['players'] = Player.objects.all().order_by('-rank')[:3]
-        context['matches'] = Match.objects.all().order_by('-time')[:3]
+        context['players'] = Player.objects.all().order_by('-rank')[:5]
+        context['matches'] = Match.objects.all().order_by('-time')[:5]
         return context
 
 

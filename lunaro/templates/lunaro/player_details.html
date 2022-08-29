@@ -6,28 +6,83 @@
 {% block webpage_content %}
     <div class="container">
         <br>
-        <h1>Details of player: {{ player.name }}</h1>
-        <h4>Rank: {{ player.rank }}</h4>
+        <div class="mb-2 mt-2 d-flex">
+            <h2 class="d-inline-flex text-muted">Details of player:</h2>
 
-        <h4>Matches:</h4>
+            {% if player.rank <= 1500 %}
+            <h2 class="d-inline-flex ms-2 text-neophyte"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 1750 %}
+            <h2 class="d-inline-flex ms-2 text-padawan"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2000 %}
+            <h2 class="d-inline-flex ms-2 text-amateur"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2250 %}
+            <h2 class="d-inline-flex ms-2 text-skilled"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2500 %}
+            <h2 class="d-inline-flex ms-2 text-pro"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2750 %}
+            <h2 class="d-inline-flex ms-2 text-master"> {{ player.name }}</h2>
+
+            {% else %}
+            <h2 class="d-inline-flex ms-2 text-champion"> {{ player.name }}</h2>
+
+            {% endif %}
+
+        </div>
+
+        <div class="mb-2 mt-2 pt-2 pb-2">
+        <div class="mb-2 mt-2 d-flex">
+            <h4 class="d-inline-flex text-muted">Rank: </h4>
+
+            {% if player.rank <= 1500 %}
+            <h4 class="d-inline-flex ms-2 text-neophyte"> {{ player.rank }} (Neophyte)</h4>
+
+            {% elif player.rank <= 1750 %}
+            <h4 class="d-inline-flex ms-2 text-padawan"> {{ player.rank }} (Padawan)</h4>
+
+            {% elif player.rank <= 2000 %}
+            <h4 class="d-inline-flex ms-2 text-amateur"> {{ player.rank }} (Amateur)</h4>
+
+            {% elif player.rank <= 2250 %}
+            <h4 class="d-inline-flex ms-2 text-skilled"> {{ player.rank }} (Skilled)</h4>
+
+            {% elif player.rank <= 2500 %}
+            <h4 class="d-inline-flex ms-2 text-pro"> {{ player.rank }} (Pro)</h4>
+
+            {% elif player.rank <= 2750 %}
+            <h4 class="d-inline-flex ms-2 text-master"> {{ player.rank }} (Master)</h4>
+
+            {% else %}
+            <h4 class="d-inline-flex ms-2 text-champion"> {{ player.rank }} (Champion)</h4>
+
+            {% endif %}
+
+        </div>
+        <h4 class="text-muted">Matches:</h4>
         <table class="table">
             <thead>
-            <tr>
-                <th>Player 1</th>
-                <th>Player 2</th>
-                <th>Score</th>
-            </tr>
+                <tr>
+                    <th scope="col">Player 1</th>
+                    <th scope="col">Player 2</th>
+                    <th scope="col">Score</th>
+                    <th scope="col"> <th>
+                </tr>
             </thead>
             <tbody>
             {% for match in player_matches %}
-                <tr>
-                    <th>{{ match.player_a }}</th>
-                    <th>{{ match.player_b }}</th>
-                    <th>{{ match.score_a }} : {{ match.score_b }}</th>
-                    <th><a href="{% url 'match-details' match.id %}">Show details</a> </th>
-                </tr>
+            <tr>
+                <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.player_a }}</p></div></th>
+                <td><div class="d-inline-flex"><p class="text-moon d-inline-flex">{{ match.player_b }}</p></div></th>
+                <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.score_a }}</p><p class="text-muted d-inline-flex ms-2"> : </p><p class="text-moon d-inline-flex ms-2">{{ match.score_b }}</p></div></th>
+                <td><a href="{% url 'match-details' match.id %}" class="btn btn-outline-primary m-1">View</a> </th>
+            </tr>
             {% endfor %}
             </tbody>
         </table>
+        </div>
     </div>
 {% endblock webpage_content %}
