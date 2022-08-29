@@ -77,43 +77,40 @@
             <tr>
 
                 <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none 
-                    {% if player.rank <= 1500 %}
+                    {% if match.player_a.rank <= 1500 %}
                     text-neophyte
-                    {% elif player.rank <= 1750 %}
+                    {% elif match.player_a.rank <= 1750 %}
                     text-padawan
-                    {% elif player.rank <= 2000 %}
+                    {% elif match.player_a.rank <= 2000 %}
                     text-amateur
-                    {% elif player.rank <= 2250 %}
+                    {% elif  match.player_a.rank <= 2250 %}
                     text-skilled
-                    {% elif player.rank <= 2500 %}
+                    {% elif match.player_a.rank <= 2500 %}
                     text-pro
-                    {% elif player.rank <= 2750 %}
+                    {% elif match.player_a.rank <= 2750 %}
                     text-master
                     {% else %}
                     text-champion
                     {% endif %}
-                d-inline-flex">{{ match.player_a }}</a></div></th>
+                 d-inline-flex">{{ match.player_a }}</a></div></td>
 
-
-
-                
-                <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none 
-                    {% if player.rank <= 1500 %}
+                 <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none 
+                    {% if  .player_a.rank <= 1500 %}
                     text-neophyte
-                    {% elif player.rank <= 1750 %}
+                    {% elif match.player_b.rank <= 1750 %}
                     text-padawan
-                    {% elif player.rank <= 2000 %}
+                    {% elif match.player_b.rank <= 2000 %}
                     text-amateur
-                    {% elif player.rank <= 2250 %}
+                    {% elif match.player_b.rank <= 2250 %}
                     text-skilled
-                    {% elif player.rank <= 2500 %}
+                    {% elif match.player_b.rank <= 2500 %}
                     text-pro
-                    {% elif player.rank <= 2750 %}
+                    {% elif match.player_b <= 2750 %}
                     text-master
                     {% else %}
                     text-champion
                     {% endif %}
-                d-inline-flex">{{ match.player_b }}</a></div></th>
+                 d-inline-flex">{{ match.player_b }}</a></div></td>
 
                 <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.score_a }}</p><p class="text-muted d-inline-flex ms-2"> : </p><p class="text-moon d-inline-flex ms-2">{{ match.score_b }}</p></div></th>
                 <td><div class="d-inline-flex text-muted"><p class="d-inline-flex">{{ match.time }}</p></div></th>
