@@ -1,0 +1,33 @@
+{% extends 'lunaro/base.html' %}
+{% block title %}
+    Player Details
+{% endblock title %}
+
+{% block webpage_content %}
+    <div class="container">
+        <br>
+        <h1>Details of player: {{ player.name }}</h1>
+        <h4>Rank: {{ player.rank }}</h4>
+
+        <h4>Matches:</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for match in player_matches %}
+                <tr>
+                    <th>{{ match.player_a }}</th>
+                    <th>{{ match.player_b }}</th>
+                    <th>{{ match.score_a }} : {{ match.score_b }}</th>
+                    <th><a href="{% url 'match-details' match.id %}">Show details</a> </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock webpage_content %}

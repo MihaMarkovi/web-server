@@ -20,10 +20,11 @@
                     <tr>
                         <th>{{ player.name }}</th>
                         <th>{{ player.rank }}</th>
+                        <th><a href="{% url 'player-details' player.pk %}">Details</a></th>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-
         </div>
+    </div>
 {% endblock webpage_content %}

@@ -1,4 +1,5 @@
 from django.views import generic
+from django.db.models import Q
 from .api import get_match_data, get_player_data
 from .models import Player, Match
 
@@ -36,3 +37,14 @@ class MatchView(generic.ListView):
 class MatchDetailView(generic.DetailView):
     model = Match
     template_name = 'lunaro/match_details.html'
+
+
+class PlayerDetailView(generic.DetailView):
+    model = Player
+    template_name = 'lunaro/player_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['player_matches'] = Match.objects.filter(
+            Q(player_a_id=self.kwargs['pk']) | Q(player_b_id=self.kwargs['pk']))
+        return context
