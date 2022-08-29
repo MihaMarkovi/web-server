@@ -8,13 +8,59 @@
         <br>
         <div class="mb-2 mt-2 d-flex">
             <h2 class="d-inline-flex text-muted">Details of player:</h2>
-            <h2 class="d-inline-flex ms-2"> {{ player.name }}</h2>
+
+            {% if player.rank <= 1500 %}
+            <h2 class="d-inline-flex ms-2 text-neophyte"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 1750 %}
+            <h2 class="d-inline-flex ms-2 text-padawan"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2000 %}
+            <h2 class="d-inline-flex ms-2 text-amateur"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2250 %}
+            <h2 class="d-inline-flex ms-2 text-skilled"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2500 %}
+            <h2 class="d-inline-flex ms-2 text-pro"> {{ player.name }}</h2>
+
+            {% elif player.rank <= 2750 %}
+            <h2 class="d-inline-flex ms-2 text-master"> {{ player.name }}</h2>
+
+            {% else %}
+            <h2 class="d-inline-flex ms-2 text-champion"> {{ player.name }}</h2>
+
+            {% endif %}
+
         </div>
 
         <div class="mb-2 mt-2 pt-2 pb-2">
         <div class="mb-2 mt-2 d-flex">
             <h4 class="d-inline-flex text-muted">Rank: </h4>
-            <h4 class="d-inline-flex ms-2"> {{ player.rank }}</h4>
+
+            {% if player.rank <= 1500 %}
+            <h4 class="d-inline-flex ms-2 text-neophyte"> {{ player.rank }} (Neophyte)</h4>
+
+            {% elif player.rank <= 1750 %}
+            <h4 class="d-inline-flex ms-2 text-padawan"> {{ player.rank }} (Padawan)</h4>
+
+            {% elif player.rank <= 2000 %}
+            <h4 class="d-inline-flex ms-2 text-amateur"> {{ player.rank }} (Amateur)</h4>
+
+            {% elif player.rank <= 2250 %}
+            <h4 class="d-inline-flex ms-2 text-skilled"> {{ player.rank }} (Skilled)</h4>
+
+            {% elif player.rank <= 2500 %}
+            <h4 class="d-inline-flex ms-2 text-pro"> {{ player.rank }} (Pro)</h4>
+
+            {% elif player.rank <= 2750 %}
+            <h4 class="d-inline-flex ms-2 text-master"> {{ player.rank }} (Master)</h4>
+
+            {% else %}
+            <h4 class="d-inline-flex ms-2 text-champion"> {{ player.rank }} (Champion)</h4>
+
+            {% endif %}
+
         </div>
         <h4 class="text-muted">Matches:</h4>
         <table class="table">
