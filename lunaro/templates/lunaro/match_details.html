@@ -13,28 +13,24 @@
                 <div class="row d-inline-flex m-2 p-3 card" style="width: 15rem;">
                     <div class="column-md-2 d-flex">
 
-                        {% if match.player_a.rank <= 1500 %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-neophyte">{{ match.player_a }}</a>
-
-                        {% elif match.player_a.rank <= 1750 %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-padawan">{{ match.player_a }}</a>
-
-                        {% elif match.player_a.rank <= 2000 %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-amateur">{{ match.player_a }}</a>
-
-                        {% elif match.player_a.rank <= 2250 %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-skilled">{{ match.player_a }}</a>
-
-                        {% elif match.player_a.rank <= 2500 %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-pro">{{ match.player_a }}</a>
-
-                        {% elif match.player_a.rank <= 2750 %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-master">{{ match.player_a }}</a>
-
+                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 
+                        {% if player.rank <= 1500 %}
+                        text-neophyte
+                        {% elif player.rank <= 1750 %}
+                        text-padawan
+                        {% elif player.rank <= 2000 %}
+                        text-amateur
+                        {% elif player.rank <= 2250 %}
+                        text-skilled
+                        {% elif player.rank <= 2500 %}
+                        text-pro
+                        {% elif player.rank <= 2750 %}
+                        text-master
                         {% else %}
-                        <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none card-text d-inline mb-3 text-champion">{{ match.player_a }}</a>
+                        text-champion
                         {% endif %}
-            
+                        ">{{ match.player_a }}</a>
+
                     </div>
                     <div class="column-md-2 d-flex">
                         <p class="card-text d-inline">Goals: </p>
