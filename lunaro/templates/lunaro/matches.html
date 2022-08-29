@@ -21,8 +21,52 @@
             <tbody>
             {% for match in matches %}
                 <tr>
-                    <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.player_a }}</p></div></th>
-                    <td><div class="d-inline-flex"><p class="text-moon d-inline-flex">{{ match.player_b }}</p></div></th>
+                    {% if match.player_a.rank <= 1500 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-neophyte d-inline-flex">{{ match.player_a }}</a></div></th>
+
+                    {% elif match.player_a.rank <= 1750 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-padawan d-inline-flex">{{ match.player_a }}</a></div></th>
+
+                    {% elif match.player_a.rank <= 2000 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-amateur d-inline-flex">{{ match.player_a }}</a></div></th>
+
+                    {% elif match.player_a.rank <= 2250 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-skilled d-inline-flex">{{ match.player_a }}</a></div></th>
+
+                    {% elif match.player_a.rank <= 2500 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-pro d-inline-flex">{{ match.player_a }}</a></div></th>
+
+                    {% elif match.player_a.rank <= 2750 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-master d-inline-flex">{{ match.player_a }}</a></div></th>
+
+                    {% else %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-champion d-inline-flex">{{ match.player_a }}</a></div></th>
+                    {% endif %}
+
+
+
+                    {% if match.player_b.rank <= 1500 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-neophyte d-inline-flex">{{ match.player_b }}</a></div></th>
+
+                    {% elif match.player_b.rank <= 1750 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-padawan d-inline-flex">{{ match.player_b }}</a></div></th>
+
+                    {% elif match.player_b.rank <= 2000 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-amateur d-inline-flex">{{ match.player_b }}</a></div></th>
+
+                    {% elif match.player_b.rank <= 2250 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-skilled d-inline-flex">{{ match.player_b }}</a></div></th>
+
+                    {% elif match.player_b.rank <= 2500 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-pro d-inline-flex">{{ match.player_b }}</a></div></th>
+
+                    {% elif match.player_b.rank <= 2750 %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-master d-inline-flex">{{ match.player_b }}</a></div></th>
+
+                    {% else %}
+                    <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-champion d-inline-flex">{{ match.player_b }}</a></div></th>
+                    {% endif %}
+
                     <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.score_a }}</p><p class="text-muted d-inline-flex ms-2"> : </p><p class="text-moon d-inline-flex ms-2">{{ match.score_b }}</p></div></th>
                     <td><div class="d-inline-flex text-muted"><p class="d-inline-flex">{{ match.time }}</p></div></th>
                     <td><a href="{% url 'match-details' match.id %}" class="btn btn-outline-primary m-1">View</a> </th>
