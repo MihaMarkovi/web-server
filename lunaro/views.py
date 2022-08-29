@@ -25,6 +25,10 @@ class PlayerView(generic.ListView):
         return Player.objects.all().order_by('-rank')
 
 
+class AboutView(generic.TemplateView):
+    template_name = 'lunaro/about.html'
+
+
 class MatchView(generic.ListView):
     get_match_data()
     template_name = 'lunaro/matches.html'

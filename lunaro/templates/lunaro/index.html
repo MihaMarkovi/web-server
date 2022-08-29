@@ -10,11 +10,7 @@
         <a href="{% url "main" %}" class="btn btn-secondary">Back</a>
         <div class="text-center">
             <h1>Welcome to Lunaro tracker</h1>
-            <h4>This is where everything started ...</h4>
             <hr>
-            <p>Lunaro is a game mode for the game, called Warframe from Digital Extremes. I and my fellow ballers
-                wanted to create a ranking system, that allows us to monitor players' progress, because Lunaro did not
-                provide it.</p><br>
 
             <h2>TOP PLAYERS</h2>
             <table class="table">
@@ -22,7 +18,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Rank</th>
-                    <th> </th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,33 +26,44 @@
                     <tr>
                         <td><p class="text-muted">{{ player.name }}</p></td>
                         <td><p class="text-muted">{{ player.rank }}</p></td>
-                        <td><a href="{% url 'player-details' player.pk %}" class="btn btn-outline-primary m-1">View</a></th>
+                        <td><a href="{% url 'player-details' player.pk %}" class="btn btn-outline-primary m-1">View</a>
+                        </th>
                     </tr>
                 {% endfor %}
                 </tbody>
-        </table>
-<br>
-        <h2 class="m-2">RECENT MATCHES</h2>
-        <table class="table m-2">
-            <thead>
-            <tr>
-                <th scope="col">Player 1</th>
-                <th scope="col">Player 2</th>
-                <th scope="col">Score</th>
-                <th scope="col"> <th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for match in matches %}
+            </table>
+            <br>
+            <h2 class="m-2">RECENT MATCHES</h2>
+            <table class="table m-2">
+                <thead>
                 <tr>
-                    <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.player_a }}</p></div></th>
-                    <td><div class="d-inline-flex"><p class="text-moon d-inline-flex">{{ match.player_b }}</p></div></th>
-                    <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.score_a }}</p><p class="text-muted d-inline-flex ms-2"> : </p><p class="text-moon d-inline-flex ms-2">{{ match.score_b }}</p></div></th>
-                    <td><a href="{% url 'match-details' match.id %}" class="btn btn-outline-primary m-1">View</a> </th>
+                    <th scope="col">Player 1</th>
+                    <th scope="col">Player 2</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">
+                    <th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for match in matches %}
+                    <tr>
+                        <td>
+                            <div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.player_a }}</p></div>
+                        </th>
+                        <td>
+                            <div class="d-inline-flex"><p class="text-moon d-inline-flex">{{ match.player_b }}</p></div>
+                        </th>
+                        <td>
+                            <div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.score_a }}</p>
+                                <p class="text-muted d-inline-flex ms-2"> : </p>
+                                <p class="text-moon d-inline-flex ms-2">{{ match.score_b }}</p></div>
+                        </th>
+                        <td><a href="{% url 'match-details' match.id %}" class="btn btn-outline-primary m-1">View</a>
+                        </th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock webpage_content %}
