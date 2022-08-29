@@ -20,7 +20,6 @@
                 {% for player in players %}
                     <tr>
 
-
                         {% if player.rank <= 1500 %}
                         <td><a href="{% url 'player-details' player.pk %}" class="text-decoration-none text-neophyte">{{ player.name }}</p></td>
 
