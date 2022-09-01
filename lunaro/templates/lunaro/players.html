@@ -9,29 +9,67 @@
         <br>
         <div class="text-center">
             <h1>List of all players</h1>
+
+            <div id="autocomplete" class="autocomplete">
+                <label>Search:</label>
+                <input class="autocomplete-input">
+                <ul class="autocomplete-result-list card"></ul>
+
+            </div>
+
             <table class="table">
                 <thead>
                 <tr>
                     <th>Name</th>
                     <th>Rank</th>
-                    <th> </th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for player in players %}
                     <tr>
 
-                    <td><a href="{% url 'player-details' player.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">{{player.name}}</a></td>
+                        <td><a href="{% url 'player-details' player.pk %}"
+                               class="text-decoration-none text-{{ player.rank|rank_to_name }}">{{ player.name }}</a>
+                        </td>
 
-                    <td><p class="text-{{player.rank|rank_to_name}}">{{player.rank|rank_and_name}}</p></td>
+                        <td><p class="text-{{ player.rank|rank_to_name }}">{{ player.rank|rank_and_name }}</p></td>
 
-                        
-                        <td><a href="{% url 'player-details' player.pk %}" class="btn btn-outline-primary m-1">View</a></th>
+
+                        <td><a href="{% url 'player-details' player.pk %}" class="btn btn-outline-primary m-1">View</a>
+                        </th>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+    <script>
+        new Autocomplete('#autocomplete', {
 
+            search: input => {
+                const url = `https://lunaroapitest.gq/api/search/${input}`
+
+                return new Promise(resolve => {
+                    if (input.length < 2) {
+                        return resolve([])
+                    }
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            resolve(data)
+                        })
+                })
+            },
+
+            getResultValue: result => result.name,
+
+            onSubmit: result => {
+
+                window.open(`/lunaro/leaderboard/${result.id}`, "_self")
+            }
+            })
+    </script>
 {% endblock webpage_content %}
