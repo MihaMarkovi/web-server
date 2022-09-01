@@ -1,4 +1,5 @@
 {% extends 'lunaro/base.html' %}
+{% load lunaro_extras %}
 {% block title %}
     Player Details
 {% endblock title %}
@@ -8,58 +9,15 @@
         <br>
         <div class="mb-2 mt-2 d-flex">
             <h2 class="d-inline-flex text-muted">Details of player:</h2>
-
-            {% if player.rank <= 1500 %}
-            <h2 class="d-inline-flex ms-2 text-neophyte"> {{ player.name }}</h2>
-
-            {% elif player.rank <= 1750 %}
-            <h2 class="d-inline-flex ms-2 text-padawan"> {{ player.name }}</h2>
-
-            {% elif player.rank <= 2000 %}
-            <h2 class="d-inline-flex ms-2 text-amateur"> {{ player.name }}</h2>
-
-            {% elif player.rank <= 2250 %}
-            <h2 class="d-inline-flex ms-2 text-skilled"> {{ player.name }}</h2>
-
-            {% elif player.rank <= 2500 %}
-            <h2 class="d-inline-flex ms-2 text-pro"> {{ player.name }}</h2>
-
-            {% elif player.rank <= 2750 %}
-            <h2 class="d-inline-flex ms-2 text-master"> {{ player.name }}</h2>
-
-            {% else %}
-            <h2 class="d-inline-flex ms-2 text-champion"> {{ player.name }}</h2>
-
-            {% endif %}
-
+            <h2 class="d-inline-flex ms-2 text-{{player.rank|rank_to_name}}">{{player.name}}</h2>
         </div>
+
 
         <div class="mb-2 mt-2 pt-2 pb-2">
         <div class="mb-2 mt-2 d-flex">
             <h4 class="d-inline-flex text-muted">Rank: </h4>
-
-            {% if player.rank <= 1500 %}
-            <h4 class="d-inline-flex ms-2 text-neophyte"> {{ player.rank }} (Neophyte)</h4>
-
-            {% elif player.rank <= 1750 %}
-            <h4 class="d-inline-flex ms-2 text-padawan"> {{ player.rank }} (Padawan)</h4>
-
-            {% elif player.rank <= 2000 %}
-            <h4 class="d-inline-flex ms-2 text-amateur"> {{ player.rank }} (Amateur)</h4>
-
-            {% elif player.rank <= 2250 %}
-            <h4 class="d-inline-flex ms-2 text-skilled"> {{ player.rank }} (Skilled)</h4>
-
-            {% elif player.rank <= 2500 %}
-            <h4 class="d-inline-flex ms-2 text-pro"> {{ player.rank }} (Pro)</h4>
-
-            {% elif player.rank <= 2750 %}
-            <h4 class="d-inline-flex ms-2 text-master"> {{ player.rank }} (Master)</h4>
-
-            {% else %}
-            <h4 class="d-inline-flex ms-2 text-champion"> {{ player.rank }} (Champion)</h4>
-
-            {% endif %}
+            
+            <h4 class="d-inline-flex ms-2 text-{{player.rank|rank_to_name}}">{{player.rank|rank_and_name}}</h4>
 
         </div>
         <h4 class="text-muted">Matches:</h4>
@@ -76,41 +34,13 @@
             {% for match in player_matches %}
             <tr>
 
-                <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none 
-                    {% if match.player_a.rank <= 1500 %}
-                    text-neophyte
-                    {% elif match.player_a.rank <= 1750 %}
-                    text-padawan
-                    {% elif match.player_a.rank <= 2000 %}
-                    text-amateur
-                    {% elif  match.player_a.rank <= 2250 %}
-                    text-skilled
-                    {% elif match.player_a.rank <= 2500 %}
-                    text-pro
-                    {% elif match.player_a.rank <= 2750 %}
-                    text-master
-                    {% else %}
-                    text-champion
-                    {% endif %}
-                 d-inline-flex">{{ match.player_a }}</a></div></td>
-
-                 <td><div class="d-inline-flex"> <a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none 
-                    {% if  .player_a.rank <= 1500 %}
-                    text-neophyte
-                    {% elif match.player_b.rank <= 1750 %}
-                    text-padawan
-                    {% elif match.player_b.rank <= 2000 %}
-                    text-amateur
-                    {% elif match.player_b.rank <= 2250 %}
-                    text-skilled
-                    {% elif match.player_b.rank <= 2500 %}
-                    text-pro
-                    {% elif match.player_b <= 2750 %}
-                    text-master
-                    {% else %}
-                    text-champion
-                    {% endif %}
-                 d-inline-flex">{{ match.player_b }}</a></div></td>
+                <td>
+                    <div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">{{match.player_a}}</a></div>
+                </td>
+ 
+                <td><div class="d-inline-flex"><a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">
+                    {{match.player_b}}
+                </a></div></td>
 
                 <td><div class="d-inline-flex"><p class="text-sun d-inline-flex">{{ match.score_a }}</p><p class="text-muted d-inline-flex ms-2"> : </p><p class="text-moon d-inline-flex ms-2">{{ match.score_b }}</p></div></th>
                 <td><div class="d-inline-flex text-muted"><p class="d-inline-flex">{{ match.time }}</p></div></th>

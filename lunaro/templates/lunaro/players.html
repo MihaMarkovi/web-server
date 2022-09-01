@@ -1,4 +1,5 @@
 {% extends 'lunaro/base.html' %}
+{% load lunaro_extras %}
 {% block title %}
     All Players
 {% endblock title %}
@@ -20,47 +21,9 @@
                 {% for player in players %}
                     <tr>
 
-                        <td><a href="{% url 'player-details' player.pk %}" class="text-decoration-none
-                            {% if player.rank <= 1500 %}
-                            text-neophyte
-                            {% elif player.rank <= 1750 %}
-                            text-padawan
-                            {% elif player.rank <= 2000 %}
-                            text-amateur
-                            {% elif player.rank <= 2250 %}
-                            text-skilled
-                            {% elif player.rank <= 2500 %}
-                            text-pro
-                            {% elif player.rank <= 2750 %}
-                            text-master
-                            {% else %}
-                            text-champion
-                            {% endif %}
-                        ">{{ player.name }}</p></td>
+                    <td><a href="{% url 'player-details' player.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">{{player.name}}</a></td>
 
-
-                        {% if player.rank <= 1500 %}
-                        <td><p class="text-neophyte">{{ player.rank }} (Neophyte)</p></td>
-
-                        {% elif player.rank <= 1750 %}
-                        <td><p class="text-padawan">{{ player.rank }} (Padawan)</p></td>
-
-                        {% elif player.rank <= 2000 %}
-                        <td><p class="text-amateur">{{ player.rank }} (Amateur)</p></td>
-
-                        {% elif player.rank <= 2250 %}
-                        <td><p class="text-skilled">{{ player.rank }} (Skilled)</p></td>
-
-                        {% elif player.rank <= 2500 %}
-                        <td><p class="text-pro">{{ player.rank }} (Pro)</p></td>
-
-                        {% elif player.rank <= 2750 %}
-                        <td><p class="text-master">{{ player.rank }} (Master)</p></td>
-
-                        {% else %}
-                        <td><p class="text-champion">{{ player.rank }} (Champion)</p></td>
-
-                        {% endif %}
+                    <td><p class="text-{{player.rank|rank_to_name}}">{{player.rank|rank_and_name}}</p></td>
 
                         
                         <td><a href="{% url 'player-details' player.pk %}" class="btn btn-outline-primary m-1">View</a></th>
@@ -70,4 +33,5 @@
             </table>
         </div>
     </div>
+
 {% endblock webpage_content %}
