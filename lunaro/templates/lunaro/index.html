@@ -11,6 +11,18 @@
         <a href="{% url "main" %}" class="btn btn-secondary">Back</a>
         <div class="text-center">
             <h1>Welcome to Lunaro tracker</h1>
+
+            <div id="autocomplete" class="mt-4 mb-lg-5">
+
+
+                <div class="form-outline">
+                        <input type="search" id="form1" class="autocomplete-input form-control d-inline-flex" placeholder="Search Players"/>
+                </div>
+
+                <ul class="autocomplete-result-list card"></ul>
+
+            </div>
+
             <hr>
 
             <h2>TOP PLAYERS</h2>
@@ -64,4 +76,32 @@
             </table>
         </div>
     </div>
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+    <script>
+        new Autocomplete('#autocomplete', {
+
+            search: input => {
+                const url = `https://lunaroapitest.gq/api/search/${input}`
+
+                return new Promise(resolve => {
+                    if (input.length < 2) {
+                        return resolve([])
+                    }
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            resolve(data)
+                        })
+                })
+            },
+
+            getResultValue: result => result.name,
+
+            onSubmit: result => {
+
+                window.open(`/lunaro/leaderboard/${result.id}`, "_self")
+            }
+            })
+    </script>
 {% endblock webpage_content %}
