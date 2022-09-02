@@ -35,10 +35,12 @@ def get_match_data():
             player_b = match['player_b']
             score_a = match['score_a']
             score_b = match['score_b']
+            ping_a = match['ping_a']
+            ping_b = match['ping_b']
             delta_a = match['delta_a']
             delta_b = match['delta_b']
             time = datetime.fromtimestamp(int(match['epoch']) / 1000)
             m = Match(id=identity_match, player_a=Player.objects.get(id=player_a),
-                      player_b=Player.objects.get(id=player_b), score_a=score_a, score_b=score_b,
+                      player_b=Player.objects.get(id=player_b), score_a=score_a, score_b=score_b, ping_a=ping_a, ping_b=ping_b,
                       delta_a=delta_a, delta_b=delta_b, time=time)
             m.save()

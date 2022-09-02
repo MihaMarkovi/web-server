@@ -16,6 +16,8 @@ class Match(models.Model):
     player_b = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="player_b")
     score_a = models.SmallIntegerField()
     score_b = models.SmallIntegerField()
+    ping_a = models.SmallIntegerField()
+    ping_b = models.SmallIntegerField()
     delta_a = models.SmallIntegerField()
     delta_b = models.SmallIntegerField()
     time = models.DateTimeField('time')

@@ -23,6 +23,11 @@
                     </div>
 
                     <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">Ping: </p>
+                        <p class="card-text d-inline ms-2 text-sun">{{ match.ping_a }}</p>
+                    </div>
+
+                    <div class="column-md-2 d-flex">
                         <p class="card-text d-inline">Rank change: </p>
 
                         {% if match.delta_a > 0 %}
@@ -50,6 +55,11 @@
                     <div class="column-md-2 d-flex">
                         <p class="card-text d-inline">Goals: </p>
                         <p class="card-text d-inline ms-2 text-moon">{{ match.score_b }}</p>
+                    </div>
+
+                    <div class="column-md-2 d-flex">
+                        <p class="card-text d-inline">Ping: </p>
+                        <p class="card-text d-inline ms-2 text-moon">{{ match.ping_b }}</p>
                     </div>
 
                     <div class="column-md-2 d-flex">
