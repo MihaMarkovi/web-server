@@ -133,7 +133,8 @@
 
     <!-- Replace the Bootstrap CSS with the
     Bootstrap-Dark Variant CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-dark.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-nightshade.min.css" rel="stylesheet">
+
 
     <!-- Optional Meta Theme Color is also supported on Safari and Chrome -->
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: light)">
@@ -182,8 +183,9 @@
         </div>
         <div class="col-1">
             <br>
-            <input type="checkbox" data-toggle="switchbutton" checked data-onstyle="outline-dark"
-                   data-offstyle="outline-primary">
+            <button type="button" id="themeButton" class="btn">
+                <i class="bi" id="themeIcon"></i>
+            </button>
         </div>
     </div>
 </div>
@@ -200,10 +202,44 @@
         integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
         crossorigin="anonymous"></script>
 
+<!-- Required DarkMode JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/js/darkmode.min.js"></script>
+
 <!--tole importa knofe https://gitbrent.github.io/bootstrap-switch-button/ -->
 
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
 
+<script>
+
+    // inDarkMode isn't set when we load the page???
+    // So we get a mismatch, we don't know whether or not we are in DarkMode
+    // There is a better function, but js doesn't find it??????????????????????????????
+    // This is fine for now I guess
+    if (darkmode.inDarkMode == true) {
+        document.getElementById("themeIcon").classList.add('bi-moon');
+    }
+
+    else {
+        document.getElementById("themeIcon").classList.add('bi-sun');;
+    }
+
+    // Toggles dark mode when we press button
+    document.querySelector("#themeButton").onclick = function(e){
+
+      darkmode.toggleDarkMode();
+
+      if (darkmode.inDarkMode) {
+        document.getElementById("themeIcon").classList.remove('bi-sun');
+        document.getElementById("themeIcon").classList.add('bi-moon');
+      }
+      else {
+        document.getElementById("themeIcon").classList.remove('bi-moon');
+        document.getElementById("themeIcon").classList.add('bi-sun');
+      }
+
+    }
+
+</script>
 </body>
 </html>
