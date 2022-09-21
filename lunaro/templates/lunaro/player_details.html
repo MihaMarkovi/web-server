@@ -38,7 +38,7 @@
                     <div class="d-inline-flex"> <a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">{{match.player_a}}</a></div>
                 </td>
  
-                <td><div class="d-inline-flex"><a href="{% url 'player-details' match.player_a.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">
+                <td><div class="d-inline-flex"><a href="{% url 'player-details' match.player_b.pk %}" class="text-decoration-none text-{{player.rank|rank_to_name}}">
                     {{match.player_b}}
                 </a></div></td>
 
